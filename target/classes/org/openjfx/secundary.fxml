@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="288.0" prefWidth="463.0">
+         <children>
+            <Label layoutX="30.0" layoutY="54.0" text="Seleccionar punto inicial:">
+               <font>
+                  <Font name="Segoe UI Black" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="228.0" layoutY="53.0" text="Seleccionar tipo de transporte:">
+               <font>
+                  <Font name="Segoe UI Black" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="139.0" text="Seleccionar punto final:">
+               <font>
+                  <Font name="Segoe UI Black" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox id="ComboBox_PuntoInicial" fx:id="ComboBox_PuntoInicial" layoutX="32.0" layoutY="78.0" prefWidth="150.0" styleClass="ComboBox_PuntoInicial" stylesheets="@../../../java/org/openjfx/style.css" />
+            <ComboBox id="ComboBox_TipodeTransporte" fx:id="ComboBox_TipodeTransporte" layoutX="230.0" layoutY="78.0" prefWidth="150.0" styleClass="ComboBox_TipodeTransporte" stylesheets="@../../../java/org/openjfx/style.css" />
+            <ComboBox id="ComboBox_PuntoFinal" fx:id="ComboBox_PuntoFinal" layoutX="33.0" layoutY="163.0" prefWidth="150.0" styleClass="ComboBox_PuntoFinal" stylesheets="@../../../java/org/openjfx/style.css" />
+            <Button id="btn_generarviaje" fx:id="btn_generarviaje" layoutX="161.0" layoutY="228.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" styleClass="btn_generarviaje" stylesheets="@../../../java/org/openjfx/style.css" text="Generar Viaje" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Black" size="15.0" />
+               </font></Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>

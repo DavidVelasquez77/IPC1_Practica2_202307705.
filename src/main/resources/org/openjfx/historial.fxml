@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="465.0" prefWidth="760.0">
+         <children>
+            <TableView id="tbl_historial" fx:id="tbl_historial" layoutX="19.0" layoutY="85.0" prefHeight="331.0" prefWidth="718.0" styleClass="tbl_historial" stylesheets="@../../../java/org/openjfx/style.css">
+              <columns>
+                <TableColumn prefWidth="50.66668891906738" text="Id" />
+                <TableColumn prefWidth="176.00000762939453" text="Fecha y hora de Inicio" />
+                  <TableColumn prefWidth="165.3332977294922" text="Fecha y hora de fin" />
+                  <TableColumn minWidth="0.0" prefWidth="101.33340454101562" text="Distancia (km)" />
+                  <TableColumn prefWidth="96.0" text="Vehículo" />
+                  <TableColumn prefWidth="129.33331298828125" text="Gasolina Consumida" />
+              </columns>
+            </TableView>
+            <Label layoutX="252.0" layoutY="30.0" text="HISTORIAL DE VIAJES" textFill="#130364">
+               <font>
+                  <Font name="Segoe UI Black" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</HBox>
