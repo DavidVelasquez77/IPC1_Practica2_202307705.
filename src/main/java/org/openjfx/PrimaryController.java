@@ -39,22 +39,22 @@ public class PrimaryController implements Initializable {
 //------------------------------------ GENERAR UN VIAJE ------------------------------------------------------------------
     @FXML
     private Button btn_GenerarViaje;
-
-    @FXML
-    private void GenerarViajeButton(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/secundary.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-            stage.setScene(scene);  
-            stage.show();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+@FXML
+private void GenerarViajeButton(ActionEvent event) {
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/secundary.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        SecundaryController secundaryController = fxmlLoader.getController();
+        secundaryController.setRecorridos(recorridos);
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        stage.setScene(scene);  
+        stage.show();
+    } catch(IOException e) {
+        e.printStackTrace();
     }
-
+}
 
 
 //------------------------------------ HISTORIAL ------------------------------------------------------------------
@@ -195,6 +195,6 @@ private Button btn_CargarRutas;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Aquí puedes agregar el código que se ejecutará después de que se hayan cargado los elementos de la interfaz de usuario.
+        recorridos = FXCollections.observableArrayList();
     }
 }

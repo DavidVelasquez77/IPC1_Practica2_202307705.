@@ -1,5 +1,5 @@
 package org.openjfx;
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
