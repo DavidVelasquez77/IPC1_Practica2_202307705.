@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+
 import java.util.HashSet;
 import javafx.beans.property.SimpleStringProperty;
 import java.util.Set;
@@ -22,6 +24,11 @@ public class SecundaryController {
     
     @FXML
     private ComboBox<String> ComboBox_TipodeTransporte;
+
+    @FXML
+    private void initialize() {
+        lbl_nopilotos.setVisible(false);
+    }
     
     public void setRecorridos(ObservableList<Recorrido> recorridos) {
         if (recorridos != null) {
@@ -47,25 +54,37 @@ public class SecundaryController {
                 "Vehículo premium 3"
             );
         } else {
-    // Opción 1: Lanzar una excepción
-    throw new IllegalArgumentException("Recorridos no puede ser null");
-}
+            // Opción 1: Lanzar una excepción
+            throw new IllegalArgumentException("Recorridos no puede ser null");
+        }
     }
 
-@FXML
-private Button btn_generarviaje;
-@FXML
-private void GenerarButton(ActionEvent event) {
-    String puntoInicial = ComboBox_PuntoInicial.getValue();
-    String puntoFinal = ComboBox_PuntoFinal.getValue();
-    String tipoTransporte = ComboBox_TipodeTransporte.getValue();
+    private int contadorViajes = 0;
+    @FXML
+    private Button btn_generarviaje;
+    @FXML
+    private Label lbl_nopilotos;
 
-    System.out.println("Punto inicial: " + puntoInicial);
-    System.out.println("Punto final: " + puntoFinal);
-    System.out.println("Tipo de transporte: " + tipoTransporte);
+    @FXML
+    private void GenerarButton(ActionEvent event) {
+        String puntoInicial = ComboBox_PuntoInicial.getValue();
+        String puntoFinal = ComboBox_PuntoFinal.getValue();
+        String tipoTransporte = ComboBox_TipodeTransporte.getValue();
 
-    // El resto de tu código...
-}
+        System.out.println("Punto inicial: " + puntoInicial);
+        System.out.println("Punto final: " + puntoFinal);
+        System.out.println("Tipo de transporte: " + tipoTransporte);
 
+        // Incrementar el contador de viajes
+        contadorViajes++;
 
+        // Verificar si se han generado 3 viajes
+        if (contadorViajes >= 3) {
+            // Deshabilitar el botón y mostrar el label
+            btn_generarviaje.setDisable(true);
+            lbl_nopilotos.setVisible(true);
+        }
+
+        // El resto de tu código...
+    }
 }

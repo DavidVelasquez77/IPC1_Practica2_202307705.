@@ -17,7 +17,7 @@
                <children>
                   <Pane prefHeight="133.0" prefWidth="188.0">
                      <children>
-                        <Label layoutX="7.0" layoutY="46.0" text="Punto Inicial" />
+                        <Label fx:id="lbl_Inicial1" layoutX="7.0" layoutY="46.0" text="Punto Inicial" />
                         <Circle fill="#46ed30" layoutX="40.0" layoutY="88.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
                      </children>
                   </Pane>
