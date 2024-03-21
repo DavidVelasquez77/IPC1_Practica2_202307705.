@@ -29,7 +29,7 @@
             <ComboBox id="ComboBox_PuntoInicial" fx:id="ComboBox_PuntoInicial" layoutX="32.0" layoutY="78.0" prefWidth="150.0" styleClass="ComboBox_PuntoInicial" stylesheets="@../../../java/org/openjfx/style.css" />
             <ComboBox id="ComboBox_TipodeTransporte" fx:id="ComboBox_TipodeTransporte" layoutX="230.0" layoutY="78.0" prefWidth="150.0" styleClass="ComboBox_TipodeTransporte" stylesheets="@../../../java/org/openjfx/style.css" />
             <ComboBox id="ComboBox_PuntoFinal" fx:id="ComboBox_PuntoFinal" layoutX="33.0" layoutY="163.0" prefWidth="150.0" styleClass="ComboBox_PuntoFinal" stylesheets="@../../../java/org/openjfx/style.css" />
-            <Button id="btn_generarviaje" fx:id="btn_generarviaje" layoutX="161.0" layoutY="228.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" styleClass="btn_generarviaje" stylesheets="@../../../java/org/openjfx/style.css" text="Generar Viaje" textFill="WHITE">
+            <Button id="btn_generarviaje" fx:id="btn_generarviaje" layoutX="161.0" layoutY="228.0" mnemonicParsing="false" onAction="#GenerarButton" prefHeight="38.0" prefWidth="135.0" styleClass="btn_generarviaje" stylesheets="@../../../java/org/openjfx/style.css" text="Generar Viaje" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Black" size="15.0" />
                </font></Button>

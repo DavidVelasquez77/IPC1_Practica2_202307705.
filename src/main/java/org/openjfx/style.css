@@ -36,7 +36,21 @@
     border-color: #8980FB;
 
 }
-.btn_menu{
+.btn_IniciarTodolosViajes{
+    -fx-background-color: #8980FB;
+    background-color:   #8980FB;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #8980FB;
+    border-color: #8980FB;
+
+}
+.btn_RutasenCurso{
     -fx-background-color: #130364;
     background-color: #130364;
     -fx-border-width: 2px 2px 2px 2px;
@@ -48,6 +62,45 @@
     border-style: solid;
     -fx-border-color: #130364;
     border-color: #130364;  
+}
+.btn_IniciarViaje1{
+    -fx-background-color: #130364;
+    background-color: #130364;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #130364;
+    border-color: #130364;   
+}
+.btn_IniciarViaje2{
+    -fx-background-color: #130364;
+    background-color: #130364;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #130364;
+    border-color: #130364;   
+}
+.btn_IniciarViaje3{
+    -fx-background-color: #130364;
+    background-color: #130364;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #130364;
+    border-color: #130364;   
 }
 
 .btn_GenerarViaje{
@@ -89,6 +142,52 @@
     -fx-border-color: #443AA2;
     border-color: #443AA2;  
 }
+.HBox_Viaje1{
+    -fx-background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;     
+}
+.HBox_Viaje2{
+    -fx-background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;     
+
+}
+.HBox_Viaje3{
+    -fx-background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;     
+
+}
+
+
+
+
+
 .btn_EditarDistancia{
     -fx-background-color: #FFFFFF;
     background-color: #FFFFFF;

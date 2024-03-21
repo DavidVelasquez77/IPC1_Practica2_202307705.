@@ -36,6 +36,23 @@ import javafx.scene.Node;
 
 public class PrimaryController implements Initializable {
 
+    @FXML
+    private Button btn_RutasenCurso;
+@FXML
+private void RutasenCursoButtton(ActionEvent event) {
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/Viaje.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        stage.setScene(scene);  
+        stage.show();
+    } catch(IOException e) {
+        e.printStackTrace();
+    }
+}
+
 //------------------------------------ GENERAR UN VIAJE ------------------------------------------------------------------
     @FXML
     private Button btn_GenerarViaje;

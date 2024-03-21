@@ -1,7 +1,9 @@
 package org.openjfx;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import java.util.HashSet;
 import javafx.beans.property.SimpleStringProperty;
@@ -49,5 +51,21 @@ public class SecundaryController {
     throw new IllegalArgumentException("Recorridos no puede ser null");
 }
     }
+
+@FXML
+private Button btn_generarviaje;
+@FXML
+private void GenerarButton(ActionEvent event) {
+    String puntoInicial = ComboBox_PuntoInicial.getValue();
+    String puntoFinal = ComboBox_PuntoFinal.getValue();
+    String tipoTransporte = ComboBox_TipodeTransporte.getValue();
+
+    System.out.println("Punto inicial: " + puntoInicial);
+    System.out.println("Punto final: " + puntoFinal);
+    System.out.println("Tipo de transporte: " + tipoTransporte);
+
+    // El resto de tu código...
+}
+
 
 }
