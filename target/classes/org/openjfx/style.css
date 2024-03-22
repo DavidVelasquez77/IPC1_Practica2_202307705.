@@ -116,6 +116,47 @@
     -fx-border-color: #443AA2;
     border-color: #443AA2;  
 }
+.btn_regresar1{
+    -fx-background-color: #443AA2;
+    background-color: #443AA2;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;  
+
+}
+.btn_regresar2{
+    -fx-background-color: #443AA2;
+    background-color: #443AA2;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;  
+}
+.btn_regresar3{
+    -fx-background-color: #443AA2;
+    background-color: #443AA2;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;  
+
+}
 .btn_historial{
     -fx-background-color: #443AA2;
     background-color: #443AA2;
@@ -169,6 +210,46 @@
     border-color: #443AA2;     
 
 }
+.btn_recargar1{
+    -fx-background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;   
+}
+.btn_recargar2{
+    -fx-background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;   
+}
+.btn_recargar3{
+    -fx-background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    -fx-border-width: 2px 2px 2px 2px;
+    border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    border-style: solid;
+    -fx-border-color: #443AA2;
+    border-color: #443AA2;   
+}
+
 .HBox_Viaje3{
     -fx-background-color: #FFFFFF;
     background-color: #FFFFFF;
