@@ -7,7 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+
 import javafx.beans.property.SimpleStringProperty;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -25,11 +29,31 @@ public class SecundaryController {
     @FXML
     private ComboBox<String> ComboBox_TipodeTransporte;
 
+    private List<String> transportesSeleccionados = new ArrayList<>();
+
     @FXML
     private void initialize() {
         lbl_nopilotos.setVisible(false);
+
+        ComboBox_PuntoInicial.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                updatePuntoFinalComboBox(newSelection);
+            }
+        });
     }
-    
+
+    private void updatePuntoFinalComboBox(String puntoInicial) {
+        ComboBox_PuntoFinal.getItems().clear();
+
+        for (Recorrido recorrido : recorridos) {
+            if (recorrido.getInicio().equals(puntoInicial)) {
+                ComboBox_PuntoFinal.getItems().add(recorrido.getFin());
+            } else if (recorrido.getFin().equals(puntoInicial)) {
+                ComboBox_PuntoFinal.getItems().add(recorrido.getInicio());
+            }
+        }
+    }
+
     public void setRecorridos(ObservableList<Recorrido> recorridos) {
         if (recorridos != null) {
             this.recorridos = recorridos;
@@ -42,17 +66,7 @@ public class SecundaryController {
             ComboBox_PuntoInicial.getItems().addAll(puntos);
             ComboBox_PuntoFinal.getItems().addAll(puntos);
             
-            ComboBox_TipodeTransporte.getItems().addAll(
-                "Motocicleta 1",
-                "Motocicleta 2",
-                "Motocicleta 3",
-                "Vehículo estándar 1",
-                "Vehículo estándar 2",
-                "Vehículo estándar 3",
-                "Vehículo premium 1",
-                "Vehículo premium 2",
-                "Vehículo premium 3"
-            );
+            updateTransporteComboBox();
         } else {
             // Opción 1: Lanzar una excepción
             throw new IllegalArgumentException("Recorridos no puede ser null");
@@ -85,6 +99,32 @@ public class SecundaryController {
             lbl_nopilotos.setVisible(true);
         }
 
-        // El resto de tu código...
+        // Añade el transporte seleccionado a la lista
+        transportesSeleccionados.add(tipoTransporte);
+
+        // Actualiza el ComboBox de transporte
+        updateTransporteComboBox();
+    }
+
+    private void updateTransporteComboBox() {
+        List<String> transportes = Arrays.asList(
+            "Motocicleta 1",
+            "Motocicleta 2",
+            "Motocicleta 3",
+            "Vehículo estándar 1",
+            "Vehículo estándar 2",
+            "Vehículo estándar 3",
+            "Vehículo premium 1",
+            "Vehículo premium 2",
+            "Vehículo premium 3"
+        );
+
+        ComboBox_TipodeTransporte.getItems().clear();
+
+        for (String transporte : transportes) {
+            if (!transportesSeleccionados.contains(transporte)) {
+                ComboBox_TipodeTransporte.getItems().add(transporte);
+            }
+        }
     }
 }
