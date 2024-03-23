@@ -104,6 +104,9 @@ public class SecundaryController {
 
         // Actualiza el ComboBox de transporte
         updateTransporteComboBox();
+
+        Transporte.addTipo(tipoTransporte);
+
     }
 
     private void updateTransporteComboBox() {
