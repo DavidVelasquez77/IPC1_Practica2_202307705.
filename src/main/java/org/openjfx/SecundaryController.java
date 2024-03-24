@@ -6,17 +6,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-
-import javafx.beans.property.SimpleStringProperty;
 import java.util.Set;
 import javafx.collections.FXCollections;
 
-public class SecundaryController {
+public class SecundaryController {   
+    private static List<Viaje> viajes = new ArrayList<>();
+
+    public SecundaryController(PrimaryController primaryController) {        
+        
+    }
     
     private ObservableList<Recorrido> recorridos = FXCollections.observableArrayList();
 
@@ -30,6 +32,12 @@ public class SecundaryController {
     private ComboBox<String> ComboBox_TipodeTransporte;
 
     private List<String> transportesSeleccionados = new ArrayList<>();
+
+    
+
+    public void setViajes(List<Viaje> viajes) {
+        SecundaryController.viajes = viajes;
+    }
 
     @FXML
     private void initialize() {
@@ -79,6 +87,7 @@ public class SecundaryController {
     @FXML
     private Label lbl_nopilotos;
 
+
     @FXML
     private void GenerarButton(ActionEvent event) {
         String puntoInicial = ComboBox_PuntoInicial.getValue();
@@ -105,8 +114,16 @@ public class SecundaryController {
         // Actualiza el ComboBox de transporte
         updateTransporteComboBox();
 
-        Transporte.addTipo(tipoTransporte);
+        // Crea un nuevo Viaje y añádelo a la lista
+        Viaje viaje = new Viaje(
+            ComboBox_PuntoInicial.getValue(),
+            ComboBox_PuntoFinal.getValue(),
+            tipoTransporte
+        );
+        viajes.add(viaje);
 
+        // Imprime los viajes en la consola
+        System.out.println("Viajes en SecundaryController: " + viajes);
     }
 
     private void updateTransporteComboBox() {
@@ -129,5 +146,18 @@ public class SecundaryController {
                 ComboBox_TipodeTransporte.getItems().add(transporte);
             }
         }
+    }
+
+    public SecundaryController() {
+        
+    }
+
+    public List<Viaje> getViajes(){
+        return SecundaryController.viajes;
+    }    
+
+    public void addViaje(Viaje viaje) {
+        // Añade el viaje a la lista
+        SecundaryController.viajes.add(viaje);
     }
 }

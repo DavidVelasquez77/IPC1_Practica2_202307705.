@@ -1,15 +1,18 @@
 package org.openjfx;
 
 import javafx.fxml.FXML;
+
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.animation.TranslateTransition;
+import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
-import java.util.List;
-import java.util.ArrayList;
 
 public class ViajeController {
+
+    private List<Viaje> viajes;
 
     @FXML
     private Button btn_IniciarViaje1;
@@ -26,138 +29,101 @@ public class ViajeController {
     @FXML
     private Button btn_IniciarTodolosViajes;
     @FXML
-    private ImageView imagemoto;
+    private HBox HBox1;
     @FXML
-    private ImageView imagemoto2;
+    private HBox HBox2;
     @FXML
-    private ImageView imagemoto3;
-    @FXML
-    private ImageView imagecarroestandar;
-    @FXML
-    private ImageView imagecarroestandar2;
-    @FXML
-    private ImageView imagecarroestandar3;
-    @FXML
-    private ImageView imagecarropremium;
-    @FXML
-    private ImageView imagecarropremium2;
-    @FXML
-    private ImageView imagecarropremium3;
-    
-    
+    private HBox HBox3;
 
     @FXML
     private void IniciarViaje1Button(ActionEvent event) {
-        List<String> tiposTransporte = Transporte.getTipos();
-        String ultimoTipoTransporte = tiposTransporte.get(tiposTransporte.size() - 1);
-
-
-        switch (ultimoTipoTransporte) {
-            case "Motocicleta 1":
-            case "Motocicleta 2":
-            case "Motocicleta 3":
-                // Muestra y mueve la imagen correspondiente
-                imagemoto.setVisible(true);
-                moverImagen(imagemoto, btn_recargar1, 460 - 30);
-                break;
-            case "Vehículo estándar 1":
-            case "Vehículo estándar 2":
-            case "Vehículo estándar 3":
-                // Muestra y mueve la imagen correspondiente
-                imagecarroestandar.setVisible(true);
-                moverImagen(imagecarroestandar, btn_recargar1, 460 - 30);
-                break;
-            case "Vehículo premium 1":
-            case "Vehículo premium 2":
-            case "Vehículo premium 3":
-                // Muestra y mueve la imagen correspondiente
-                imagecarropremium.setVisible(true);
-                moverImagen(imagecarropremium, btn_recargar1, 460 - 30);
-                break;
-        }
+        iniciarViaje(0);
     }
+
     @FXML
     private void IniciarViaje2Button(ActionEvent event) {
-        moverImagen(imagemoto2, btn_recargar2, 460 - 30);
+        iniciarViaje(1);
     }
 
     @FXML
     private void IniciarViaje3Button(ActionEvent event) {
-        moverImagen(imagemoto3, btn_recargar3, 460 - 30);
+        iniciarViaje(2);
     }
 
-    @FXML
-    private void IniciarTodolosViajesButton(ActionEvent event) {
-        moverImagen(imagemoto, btn_recargar1, 460 - 30);
-        moverImagen(imagemoto2, btn_recargar2, 460 - 30);
-        moverImagen(imagemoto3, btn_recargar3, 460 - 30);
+    private void iniciarViaje(int index) {
+        if (index < viajes.size()) {
+            Viaje viaje = viajes.get(index);
+            System.out.println("Iniciando viaje: " + viaje);
+            // Aquí iría el código para iniciar el viaje
+        } else {
+            System.out.println("No hay viaje para iniciar");
+        }
     }
 
     @FXML
     private void Regresar1(ActionEvent event) {
-        List<String> tiposTransporte = Transporte.getTipos();
-        String ultimoTipoTransporte = tiposTransporte.get(tiposTransporte.size() - 1);
-
-        switch (ultimoTipoTransporte) {
-            case "Motocicleta 1":
-            case "Motocicleta 2":
-            case "Motocicleta 3":
-                moverImagen(imagemoto, btn_recargar1, 0);
-                break;
-            case "Vehículo estándar 1":
-            case "Vehículo estándar 2":
-            case "Vehículo estándar 3":
-                moverImagen(imagecarroestandar, btn_recargar1, 0);
-                break;
-            case "Vehículo premium 1":
-            case "Vehículo premium 2":
-            case "Vehículo premium 3":
-                moverImagen(imagecarropremium, btn_recargar1, 0);
-                break;
-        }
+        System.out.println("Regresar 1");
     }
+
     @FXML
     private void Regresar2(ActionEvent event) {
-        moverImagen(imagemoto2, btn_recargar2, 0);
+        System.out.println("Regresar 2");
     }
 
     @FXML
     private void Regresar3(ActionEvent event) {
-        moverImagen(imagemoto3, btn_recargar3, 0);
-    }
-
-    private void moverImagen(ImageView imagen, Button boton, int posicionX) {
-        TranslateTransition transitionImagen = new TranslateTransition();
-        transitionImagen.setDuration(Duration.seconds(5)); // Duración de la animación
-        transitionImagen.setNode(imagen); // Nodo a mover
-        transitionImagen.setToX(posicionX); // Movimiento en el eje X
-        transitionImagen.setToY(0); // Movimiento en el eje Y
-
-        // Voltea la imagen si está regresando
-        if (posicionX == 0) {
-            imagen.setScaleX(-1);
-        } else {
-            imagen.setScaleX(1);
-        }
-
-        transitionImagen.play(); // Iniciar la animación
-
-        // Mover el botón junto con la imagen
-        TranslateTransition transitionBoton = new TranslateTransition();
-        transitionBoton.setDuration(Duration.seconds(5)); // Duración de la animación
-        transitionBoton.setNode(boton); // Nodo a mover
-        transitionBoton.setToX(posicionX); // Movimiento en el eje X
-        transitionBoton.setToY(0); // Movimiento en el eje Y
-        transitionBoton.play(); // Iniciar la animación
+        System.out.println("Regresar 3");
     }
 
     @FXML
-    public void initialize() {
-        // Oculta todas las imágenes al inicio
-        imagemoto.setVisible(false);
-        imagecarroestandar.setVisible(false);
-        imagecarropremium.setVisible(false);
+    private void IniciarTodolosViajesButton(ActionEvent event) {
+        System.out.println("Iniciar Todos los Viajes");
     }
 
+    public void setViajes(List<Viaje> viajes) {
+        // Imprime el número de viajes que se están transfiriendo
+        System.out.println("Transfiriendo " + viajes.size() + " viajes.");
 
+        // Imprime los detalles de cada viaje
+        for (Viaje viaje : viajes) {
+            System.out.println(viaje);
+        }
+
+        // Asigna una imagen a cada viaje, si existe
+        if (viajes.size() > 0) {
+            setImageForViaje(viajes.get(0), HBox1);
+        }
+        if (viajes.size() > 1) {
+            setImageForViaje(viajes.get(1), HBox2);
+        }
+        if (viajes.size() > 2) {
+            setImageForViaje(viajes.get(2), HBox3);
+        }
+
+    }
+
+    private void setImageForViaje(Viaje viaje, HBox hbox) {
+        String transporte = viaje.getTransporte();
+        
+    
+        // Determina la imagen basada en el transporte
+        String imagePath;
+        if (transporte.startsWith("Motocicleta")) {
+            imagePath = getClass().getResource("/org/openjfx/images/moto.png").toExternalForm();
+        } else if (transporte.startsWith("Vehículo estándar")) {
+            imagePath = getClass().getResource("/org/openjfx/images/vehiculoestandar.png").toExternalForm();
+            
+        } else if (transporte.startsWith("Vehículo premium")) {
+            imagePath = getClass().getResource("/org/openjfx/images/vehiculopremium.png").toExternalForm();
+        } else {
+            throw new IllegalArgumentException("Transporte desconocido: " + transporte);
+        }
+    
+        // Crea una ImageView y añádela al pane
+        Image image = new Image(imagePath);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(80);
+        imageView.setPreserveRatio(true);
+        hbox.getChildren().add(imageView);
+    }
 }

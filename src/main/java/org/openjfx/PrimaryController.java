@@ -29,29 +29,51 @@ import com.opencsv.exceptions.CsvValidationException;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.stage.FileChooser;
-import javafx.scene.Node;
 
 
 
 
 public class PrimaryController implements Initializable {
+    @FXML
+    private SecundaryController secundaryController;
+
+    public void setSecundaryController(SecundaryController secundaryController) {
+        this.secundaryController = secundaryController;
+    }
+
+    public PrimaryController() {
+        
+    }
 
     @FXML
     private Button btn_RutasenCurso;
-@FXML
-private void RutasenCursoButtton(ActionEvent event) {
-    try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/Viaje.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        stage.setScene(scene);  
-        stage.show();
-    } catch(IOException e) {
-        e.printStackTrace();
+    @FXML
+    private void RutasenCursoButtton(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/Viaje.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            
+            // Obtén una instancia del controlador ViajeController
+            ViajeController viajeController = fxmlLoader.getController();
+            
+            // Obtén los viajes de SecundaryController
+            List<Viaje> viajes = secundaryController.getViajes();
+
+            // Imprime los viajes en la consola
+            System.out.println("Viajes en PrimaryController: " + viajes);
+            
+            // Pasa los viajes a ViajeController
+            viajeController.setViajes(viajes);
+            
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+            stage.setScene(scene);  
+            stage.show();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
-}
 
 //------------------------------------ GENERAR UN VIAJE ------------------------------------------------------------------
     @FXML
