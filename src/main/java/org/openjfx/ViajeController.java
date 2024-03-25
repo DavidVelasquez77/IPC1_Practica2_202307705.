@@ -102,17 +102,16 @@ public class ViajeController {
 
     @FXML
     private void IniciarViaje1Button(ActionEvent event) {
-        moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40);
+        moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40, viajes.get(0));
     }
-
     @FXML
     private void IniciarViaje2Button(ActionEvent event) {
-        moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2,  LabelGasolina2,Gasolina2, Distancia2, 460 - 40);
+        moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 460 - 40, viajes.get(1));
     }
 
     @FXML
     private void IniciarViaje3Button(ActionEvent event) {
-        moverImagen(imageView3, btn_recargar3,LabelRecorrido3, Recorrido3,  LabelGasolina3, Gasolina3, Distancia3, 460 - 40);
+        moverImagen(imageView3, btn_recargar3, LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 460 - 40, viajes.get(2));
     }
 
     private void iniciarViaje(int index) {
@@ -127,26 +126,40 @@ public class ViajeController {
 
     @FXML
     private void Regresar1(ActionEvent event) {
-        moverImagen(imageView1, btn_recargar1, LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 0);
+        moverImagen(imageView1, btn_recargar1, LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 0, viajes.get(0));
     }
-    
 
     @FXML
     private void Regresar2(ActionEvent event) {
-        moverImagen(imageView2, btn_recargar2,LabelRecorrido2,Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 0);
+        moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 0, viajes.get(1));
     }
 
     @FXML
     private void Regresar3(ActionEvent event) {
-        moverImagen(imageView3, btn_recargar3,LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 0);
+        moverImagen(imageView3, btn_recargar3, LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 0, viajes.get(2));
     }
 
     @FXML
     private void IniciarTodolosViajesButton(ActionEvent event) {
-        moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40);
-        moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 460 - 40);
-        moverImagen(imageView3, btn_recargar3,LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 460 - 40);
+        moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40, viajes.get(0));
+        moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 460 - 40, viajes.get(1));
+        moverImagen(imageView3, btn_recargar3, LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 460 - 40, viajes.get(2));
     }
+
+    @FXML
+    private void Recargar1Button(ActionEvent event) {
+        System.out.println("Recargando gasolina para el viaje 1");
+    }
+    @FXML
+    private void Recargar2Button(ActionEvent event) {
+        System.out.println("Recargando gasolina para el viaje 2");
+    }
+    @FXML
+    private void Recargar3Button(ActionEvent event) {
+      System.out.println("Recargando gasolina para el viaje 3");
+    }
+
+
 
     public void setViajes(List<Viaje> viajes) {
         this.viajes = viajes;
@@ -174,10 +187,9 @@ public class ViajeController {
 
         // Asegúrate de que actualizarDistancia() se ejecute después de que se hayan actualizado los puntos iniciales y finales
         Platform.runLater(() -> actualizarDistancia());
-        
-
-
     }
+
+    
 
     private ImageView setImageForViaje(Viaje viaje, HBox hbox) {
         String transporte = viaje.getTransporte();
@@ -187,11 +199,16 @@ public class ViajeController {
         String imagePath;
         if (transporte.startsWith("Motocicleta")) {
             imagePath = getClass().getResource("/org/openjfx/images/moto.png").toExternalForm();
+            viaje.setCapacidadGasolina(6.0);
+            viaje.setConsumoGasolina(0.1);
         } else if (transporte.startsWith("Vehículo estándar")) {
             imagePath = getClass().getResource("/org/openjfx/images/vehiculoestandar.png").toExternalForm();
-            
+            viaje.setCapacidadGasolina(10.0);
+            viaje.setConsumoGasolina(0.3);
         } else if (transporte.startsWith("Vehículo premium")) {
             imagePath = getClass().getResource("/org/openjfx/images/vehiculopremium.png").toExternalForm();
+            viaje.setCapacidadGasolina(12.0);
+            viaje.setConsumoGasolina(0.45);
         } else {
             throw new IllegalArgumentException("Transporte desconocido: " + transporte);
         }
@@ -269,7 +286,7 @@ public class ViajeController {
         }
     }
     
-private void moverImagen(ImageView imagen, Button boton,Label labelrecorrido, Label recorrido, Label labelgasolina,Label gasolina, Label distancia, int posicionX) {
+    private void moverImagen(ImageView imagen, Button boton,Label labelrecorrido, Label recorrido, Label labelgasolina,Label gasolina, Label distancia, int posicionX, Viaje viaje) {
     TranslateTransition transitionImagen = new TranslateTransition();
     transitionImagen.setDuration(Duration.seconds(5)); // Duración de la animación
     transitionImagen.setNode(imagen); // Nodo a mover
@@ -324,8 +341,8 @@ private void moverImagen(ImageView imagen, Button boton,Label labelrecorrido, La
         transitiongasolina.play(); // Iniciar la animación
     
 
-    // Actualizar el recorrido a medida que la imagen se mueve
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+     // Actualizar el recorrido a medida que la imagen se mueve
+     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
         double progress = Math.abs(imagen.getTranslateX()) / 420; // 420 es la distancia total que se mueve la imagen
         int totalDistancia = Integer.parseInt(distancia.getText());
         int recorridoActual = (int) Math.ceil(progress * totalDistancia); // Redondear hacia arriba
@@ -334,8 +351,22 @@ private void moverImagen(ImageView imagen, Button boton,Label labelrecorrido, La
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
 
-    transitionImagen.setOnFinished(event -> timeline.stop());
-}
+    // Actualizar la gasolina a medida que la imagen se mueve
+    Timeline timelineGasolina = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+        double progress = Math.abs(imagen.getTranslateX()) / 420; // 420 es la distancia total que se mueve la imagen
+        double totalGasolina = viaje.getCapacidadGasolina();
+        double consumoGasolina = viaje.getConsumoGasolina();
+        double gasolinaConsumida = progress * consumoGasolina;
+        double gasolinaActual = totalGasolina - gasolinaConsumida;
+        gasolina.setText(String.format("%.2f", gasolinaActual));
+    }));
+    timelineGasolina.setCycleCount(Timeline.INDEFINITE);
+    timelineGasolina.play();
 
+    transitionImagen.setOnFinished(event -> {
+        timeline.stop();
+        timelineGasolina.stop();
+    });
     
+}
 }

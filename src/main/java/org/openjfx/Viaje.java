@@ -4,6 +4,9 @@ public class Viaje {
     private String puntoInicial;
     private String puntoFinal;
     private String transporte;
+    private double capacidadGasolina;
+    private double consumoGasolina;
+    private int recorridoTotal = 0;
 
     public Viaje(String puntoInicial, String puntoFinal, String transporte) {
         this.puntoInicial = puntoInicial;
@@ -35,6 +38,29 @@ public class Viaje {
         this.transporte = transporte;
     }
 
+        // Getters y setters para los nuevos campos
+        public double getCapacidadGasolina() {
+            return capacidadGasolina;
+        }
+    
+        public void setCapacidadGasolina(double capacidadGasolina) {
+            this.capacidadGasolina = capacidadGasolina;
+        }
+    
+        public double getConsumoGasolina() {
+            return consumoGasolina;
+        }
+    
+        public void setConsumoGasolina(double consumoGasolina) {
+            this.consumoGasolina = consumoGasolina;
+        }
+        public int getRecorridoTotal() {
+            return recorridoTotal;
+        }
+
+        public void incrementarRecorridoTotal(int incremento) {
+            this.recorridoTotal += incremento;
+        }
     @Override
     public String toString() {
         return "Viaje{" +
