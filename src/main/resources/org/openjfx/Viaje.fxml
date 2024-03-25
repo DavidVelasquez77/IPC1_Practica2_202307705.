@@ -42,7 +42,7 @@
                   <Label fx:id="Distancia1" layoutX="484.0" layoutY="-1.0" text="XXX" />
                   <Label fx:id="Recorrido1" layoutX="147.0" layoutY="13.0" text="XXX" />
                   <Label fx:id="Gasolina1" layoutX="177.0" layoutY="23.0" text="GGG" />
-                  <Button id="btn_recargar1" fx:id="btn_recargar1" layoutX="86.0" layoutY="38.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="75.0" styleClass="btn_recargar1" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
+                  <Button id="btn_recargar1" fx:id="btn_recargar1" layoutX="86.0" layoutY="38.0" mnemonicParsing="false" onAction="#Recargar1Button" prefHeight="29.0" prefWidth="75.0" styleClass="btn_recargar1" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
                      <font>
                         <Font name="Segoe UI Black" size="12.0" />
                      </font>
@@ -88,7 +88,7 @@
                   </VBox>
                   <Label fx:id="Distancia2" layoutX="483.0" layoutY="-1.0" text="XXX" />
                   <Label fx:id="Recorrido2" layoutX="149.0" layoutY="11.0" text="XXX" />
-                  <Button id="btn_recargar2" fx:id="btn_recargar2" layoutX="87.0" layoutY="36.0" mnemonicParsing="false" styleClass="btn_recargar2" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
+                  <Button id="btn_recargar2" fx:id="btn_recargar2" layoutX="87.0" layoutY="36.0" mnemonicParsing="false" onAction="#Recargar2Button" styleClass="btn_recargar2" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
                      <font>
                         <Font name="Segoe UI Black" size="12.0" />
                      </font>
@@ -136,7 +136,7 @@
                   <Label fx:id="Distancia3" layoutX="488.0" layoutY="2.0" text="XXX" />
                   <Label fx:id="Recorrido3" layoutX="148.0" layoutY="16.0" text="XXX" />
                   <Label fx:id="Gasolina3" layoutX="176.0" layoutY="28.0" text="GGG" />
-                  <Button id="btn_recargar3" fx:id="btn_recargar3" layoutX="87.0" layoutY="44.0" mnemonicParsing="false" styleClass="btn_recargar3" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
+                  <Button id="btn_recargar3" fx:id="btn_recargar3" layoutX="87.0" layoutY="44.0" mnemonicParsing="false" onAction="#Recargar3Button" styleClass="btn_recargar3" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
                      <font>
                         <Font name="Segoe UI Black" size="12.0" />
                      </font>
