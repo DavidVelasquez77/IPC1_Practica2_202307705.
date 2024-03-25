@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 
 import java.util.List;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -84,20 +86,33 @@ public class ViajeController {
     private Label Distancia2;
     @FXML
     private Label Distancia3;
+    @FXML
+    private Label LabelRecorrido1;
+    @FXML
+    private Label LabelRecorrido2;
+    @FXML
+    private Label LabelRecorrido3;
+    @FXML
+    private Label LabelGasolina1;
+    @FXML
+    private Label LabelGasolina2;
+    @FXML
+    private Label LabelGasolina3;
+
 
     @FXML
     private void IniciarViaje1Button(ActionEvent event) {
-        moverImagen(imageView1,btn_recargar1,Recorrido1,Gasolina1, 460 - 40);
+        moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40);
     }
 
     @FXML
     private void IniciarViaje2Button(ActionEvent event) {
-        moverImagen(imageView2,btn_recargar2,Recorrido2,Gasolina2, 460 - 40);
+        moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2,  LabelGasolina2,Gasolina2, Distancia2, 460 - 40);
     }
 
     @FXML
     private void IniciarViaje3Button(ActionEvent event) {
-        moverImagen(imageView3,btn_recargar3,Recorrido3, Gasolina3,460 - 40);
+        moverImagen(imageView3, btn_recargar3,LabelRecorrido3, Recorrido3,  LabelGasolina3, Gasolina3, Distancia3, 460 - 40);
     }
 
     private void iniciarViaje(int index) {
@@ -112,25 +127,25 @@ public class ViajeController {
 
     @FXML
     private void Regresar1(ActionEvent event) {
-        moverImagen(imageView1,btn_recargar1,Recorrido1,Gasolina1, 0);
+        moverImagen(imageView1, btn_recargar1, LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 0);
     }
     
 
     @FXML
     private void Regresar2(ActionEvent event) {
-        moverImagen(imageView2,btn_recargar2,Recorrido2,Gasolina2, 0);
+        moverImagen(imageView2, btn_recargar2,LabelRecorrido2,Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 0);
     }
 
     @FXML
     private void Regresar3(ActionEvent event) {
-        moverImagen(imageView3,btn_recargar3,Recorrido3, Gasolina3,0);
+        moverImagen(imageView3, btn_recargar3,LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 0);
     }
 
     @FXML
     private void IniciarTodolosViajesButton(ActionEvent event) {
-        moverImagen(imageView1,btn_recargar1,Recorrido1,Gasolina1, 460 - 40);
-        moverImagen(imageView2,btn_recargar2,Recorrido2,Gasolina2, 460 - 40);
-        moverImagen(imageView3,btn_recargar3,Recorrido3, Gasolina3,460 - 40);
+        moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40);
+        moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 460 - 40);
+        moverImagen(imageView3, btn_recargar3,LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 460 - 40);
     }
 
     public void setViajes(List<Viaje> viajes) {
@@ -159,6 +174,9 @@ public class ViajeController {
 
         // Asegúrate de que actualizarDistancia() se ejecute después de que se hayan actualizado los puntos iniciales y finales
         Platform.runLater(() -> actualizarDistancia());
+        
+
+
     }
 
     private ImageView setImageForViaje(Viaje viaje, HBox hbox) {
@@ -251,45 +269,73 @@ public class ViajeController {
         }
     }
     
-    private void moverImagen(ImageView imagen,Button boton, Label label, Label label2,  int posicionX) {
-        TranslateTransition transitionImagen = new TranslateTransition();
-        transitionImagen.setDuration(Duration.seconds(5)); // Duración de la animación
-        transitionImagen.setNode(imagen); // Nodo a mover
-        transitionImagen.setToX(posicionX); // Movimiento en el eje X
-        transitionImagen.setToY(0); // Movimiento en el eje Y
+private void moverImagen(ImageView imagen, Button boton,Label labelrecorrido, Label recorrido, Label labelgasolina,Label gasolina, Label distancia, int posicionX) {
+    TranslateTransition transitionImagen = new TranslateTransition();
+    transitionImagen.setDuration(Duration.seconds(5)); // Duración de la animación
+    transitionImagen.setNode(imagen); // Nodo a mover
+    transitionImagen.setToX(posicionX); // Movimiento en el eje X
+    transitionImagen.setToY(0); // Movimiento en el eje Y
 
-        // Voltea la imagen si está regresando
-        if (posicionX == 0) {
-            imagen.setScaleX(-1);
-        } else {
-            imagen.setScaleX(1);
-        }
-
-        transitionImagen.play(); // Iniciar la animación
-
-        // Mover el botón junto con la imagen
-        TranslateTransition transitionBoton = new TranslateTransition();
-        transitionBoton.setDuration(Duration.seconds(5)); // Duración de la animación
-        transitionBoton.setNode(boton); // Nodo a mover
-        transitionBoton.setToX(posicionX); // Movimiento en el eje X
-        transitionBoton.setToY(0); // Movimiento en el eje Y
-        transitionBoton.play(); // Iniciar la animación
-
-        TranslateTransition transitionLabel = new TranslateTransition();
-        transitionLabel.setDuration(Duration.seconds(5)); // Duración de la animación
-        transitionLabel.setNode(label); // Nodo a mover
-        transitionLabel.setToX(posicionX); // Movimiento en el eje X
-        transitionLabel.setToY(0); // Movimiento en el eje Y
-        transitionLabel.play(); // Iniciar la animación
-
-        TranslateTransition transitionLabel2 = new TranslateTransition();
-        transitionLabel2.setDuration(Duration.seconds(5)); // Duración de la animación
-        transitionLabel2.setNode(label2); // Nodo a mover
-        transitionLabel2.setToX(posicionX); // Movimiento en el eje X
-        transitionLabel2.setToY(0); // Movimiento en el eje Y
-        transitionLabel2.play(); // Iniciar la animación
+    // Voltea la imagen si está regresando
+    if (posicionX == 0) {
+        imagen.setScaleX(-1);
+    } else {
+        imagen.setScaleX(1);
     }
 
+    transitionImagen.play(); // Iniciar la animación
+
+    // Mover el botón junto con la imagen
+    TranslateTransition transitionBoton = new TranslateTransition();
+    transitionBoton.setDuration(Duration.seconds(5)); // Duración de la animación
+    transitionBoton.setNode(boton); // Nodo a mover
+    transitionBoton.setToX(posicionX); // Movimiento en el eje X
+    transitionBoton.setToY(0); // Movimiento en el eje Y
+    transitionBoton.play(); // Iniciar la animación
+
+    // Mover el labelrecorrido junto con la imagen
+    TranslateTransition transitionlabelrecorrido = new TranslateTransition();
+    transitionlabelrecorrido.setDuration(Duration.seconds(5)); // Duración de la animación
+    transitionlabelrecorrido.setNode(labelrecorrido); // Nodo a mover
+    transitionlabelrecorrido.setToX(posicionX); // Movimiento en el eje X
+    transitionlabelrecorrido.setToY(0); // Movimiento en el eje Y
+    transitionlabelrecorrido.play(); // Iniciar la animación
+
+    TranslateTransition transitionrecorrido = new TranslateTransition();
+    transitionrecorrido.setDuration(Duration.seconds(5)); // Duración de la animación
+    transitionrecorrido.setNode( recorrido); // Nodo a mover
+    transitionrecorrido.setToX(posicionX); // Movimiento en el eje X
+    transitionrecorrido.setToY(0); // Movimiento en el eje Y
+    transitionrecorrido.play(); // Iniciar la animación
+
+        // Mover el labelrecorrido junto con la imagen
+        TranslateTransition transitionlabelgasolina = new TranslateTransition();
+        transitionlabelgasolina.setDuration(Duration.seconds(5)); // Duración de la animación
+        transitionlabelgasolina.setNode(labelgasolina); // Nodo a mover
+        transitionlabelgasolina.setToX(posicionX); // Movimiento en el eje X
+        transitionlabelgasolina.setToY(0); // Movimiento en el eje Y
+        transitionlabelgasolina.play(); // Iniciar la animación
+    
+        TranslateTransition transitiongasolina = new TranslateTransition();
+        transitiongasolina.setDuration(Duration.seconds(5)); // Duración de la animación
+        transitiongasolina.setNode( gasolina); // Nodo a mover
+        transitiongasolina.setToX(posicionX); // Movimiento en el eje X
+        transitiongasolina.setToY(0); // Movimiento en el eje Y
+        transitiongasolina.play(); // Iniciar la animación
+    
+
+    // Actualizar el recorrido a medida que la imagen se mueve
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+        double progress = Math.abs(imagen.getTranslateX()) / 420; // 420 es la distancia total que se mueve la imagen
+        int totalDistancia = Integer.parseInt(distancia.getText());
+        int recorridoActual = (int) Math.ceil(progress * totalDistancia); // Redondear hacia arriba
+        recorrido.setText(String.valueOf(recorridoActual));
+    }));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
+
+    transitionImagen.setOnFinished(event -> timeline.stop());
+}
 
     
 }
