@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ViajeController">
    <children>
@@ -38,7 +39,7 @@
                         <Label fx:id="PuntoInicial1" prefHeight="75.0" prefWidth="65.0" text="Punto Inicial" />
                      </children>
                   </VBox>
-                  <Label fx:id="Distancia1" layoutX="484.0" layoutY="-1.0" text="Distancia: -km" />
+                  <Label fx:id="Distancia1" layoutX="484.0" layoutY="-1.0" text="XXX" />
                   <Label fx:id="Recorrido1" layoutX="88.0" layoutY="11.0" text="Recorrido: " />
                   <Label fx:id="Gasolina1" layoutX="89.0" layoutY="23.0" text="Gasolina Actual: -gal" />
                   <Button id="btn_recargar1" fx:id="btn_recargar1" layoutX="86.0" layoutY="38.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="75.0" styleClass="btn_recargar1" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
@@ -50,6 +51,7 @@
                      </cursor>
                   </Button>
                   <Label fx:id="Transporte1" layoutX="17.0" layoutY="-1.0" text="Transporte" />
+                  <Text layoutX="427.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distancia:" />
                </children>
             </Pane>
          </children>
@@ -82,7 +84,7 @@
                         <Label fx:id="PuntoInicial2" prefHeight="88.0" prefWidth="65.0" text="Punto Inicial" />
                      </children>
                   </VBox>
-                  <Label fx:id="Distancia2" layoutX="483.0" layoutY="-1.0" text="Distancia: -km" />
+                  <Label fx:id="Distancia2" layoutX="483.0" layoutY="-1.0" text="XXX" />
                   <Label fx:id="Recorrido2" layoutX="91.0" layoutY="11.0" text="Recorrido: " />
                   <Label fx:id="Gasolina2" layoutX="91.0" layoutY="21.0" text="Gasolina Actual: -gal" />
                   <Button id="btn_recargar2" fx:id="btn_recargar2" layoutX="87.0" layoutY="36.0" mnemonicParsing="false" styleClass="btn_recargar2" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
@@ -94,6 +96,7 @@
                      </cursor>
                   </Button>
                   <Label fx:id="Transporte2" layoutX="17.0" layoutY="-1.0" text="Transporte" />
+                  <Text layoutX="430.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distancia:" />
                </children>
             </Pane>
          </children>
@@ -126,7 +129,7 @@
                         <Label fx:id="PuntoInicial3" prefHeight="87.0" prefWidth="65.0" text="Punto Inicial" />
                      </children>
                   </VBox>
-                  <Label fx:id="Distancia3" layoutX="488.0" layoutY="2.0" text="Distancia: -km" />
+                  <Label fx:id="Distancia3" layoutX="488.0" layoutY="2.0" text="XXX" />
                   <Label fx:id="Recorrido3" layoutX="88.0" layoutY="15.0" text="Recorrido: " />
                   <Label fx:id="Gasolina3" layoutX="86.0" layoutY="28.0" text="Gasolina Actual: -gal" />
                   <Button id="btn_recargar3" fx:id="btn_recargar3" layoutX="87.0" layoutY="44.0" mnemonicParsing="false" styleClass="btn_recargar3" stylesheets="@../../../java/org/openjfx/style.css" text="Recargar">
@@ -138,6 +141,7 @@
                      </cursor>
                   </Button>
                   <Label fx:id="Transporte3" layoutX="17.0" layoutY="-1.0" text="Transporte" />
+                  <Text layoutX="433.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distancia:" />
                </children>
             </Pane>
          </children>

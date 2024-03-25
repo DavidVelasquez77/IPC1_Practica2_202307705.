@@ -112,7 +112,7 @@ public class SecundaryController {
         transportesSeleccionados.add(tipoTransporte);
 
         // Actualiza el ComboBox de transporte
-        updateTransporteComboBox();
+        updateTransporteComboBox() ;
 
         // Crea un nuevo Viaje y añádelo a la lista
         Viaje viaje = new Viaje(
@@ -160,4 +160,10 @@ public class SecundaryController {
         // Añade el viaje a la lista
         SecundaryController.viajes.add(viaje);
     }
+
+
+
+
+
+    
 }

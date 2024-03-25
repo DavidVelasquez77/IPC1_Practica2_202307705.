@@ -1,6 +1,5 @@
 package org.openjfx;
 
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -30,12 +29,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.stage.FileChooser;
 
-
-
-
 public class PrimaryController implements Initializable {
     @FXML
     private SecundaryController secundaryController;
+    @FXML
+    private ViajeController viajeController;
 
     public void setSecundaryController(SecundaryController secundaryController) {
         this.secundaryController = secundaryController;
@@ -56,6 +54,9 @@ public class PrimaryController implements Initializable {
             // Obtén una instancia del controlador ViajeController
             ViajeController viajeController = fxmlLoader.getController();
             
+            // Establece el controlador primario para el controlador de viaje
+            viajeController.setPrimaryController(this);
+            
             // Obtén los viajes de SecundaryController
             List<Viaje> viajes = secundaryController.getViajes();
 
@@ -75,32 +76,27 @@ public class PrimaryController implements Initializable {
         }
     }
 
-//------------------------------------ GENERAR UN VIAJE ------------------------------------------------------------------
     @FXML
     private Button btn_GenerarViaje;
-@FXML
-private void GenerarViajeButton(ActionEvent event) {
-    try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/secundary.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
-        SecundaryController secundaryController = fxmlLoader.getController();
-        secundaryController.setRecorridos(recorridos);
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        stage.setScene(scene);  
-        stage.show();
-    } catch(IOException e) {
-        e.printStackTrace();
+    @FXML
+    private void GenerarViajeButton(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/secundary.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            SecundaryController secundaryController = fxmlLoader.getController();
+            secundaryController.setRecorridos(recorridos);
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+            stage.setScene(scene);  
+            stage.show();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
-}
-
-
-//------------------------------------ HISTORIAL ------------------------------------------------------------------
 
     @FXML
     private Button btn_historial;
-
     @FXML
     private void historialButton(ActionEvent event) {
         try {
@@ -115,11 +111,10 @@ private void GenerarViajeButton(ActionEvent event) {
             e.printStackTrace();
         }
     }
-//------------------------------------ CARGAR RUTAS ------------------------------------------------------------------
-@FXML
-private Button btn_CargarRutas;
 
-@FXML
+    @FXML
+    private Button btn_CargarRutas;
+    @FXML
     private void handleButtonAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
@@ -132,19 +127,14 @@ private Button btn_CargarRutas;
 
     @FXML
     public TableView<Recorrido> tbl_Recorridos;
-
     @FXML
     private TableColumn<Recorrido, String> idColumna;
-
     @FXML
     public ObservableList<Recorrido> recorridos;    
-
     @FXML
     private TableColumn<Recorrido, String> inicioColumna;
-
     @FXML
     private TableColumn<Recorrido, String> finColumna;
-
     @FXML
     private TableColumn<Recorrido, String> distanciaColumna;
     
@@ -214,7 +204,6 @@ private Button btn_CargarRutas;
 
     @FXML
     private Button btn_EditarDistancias;
-
     @FXML
     private void handleEditarDistancia(ActionEvent event) {
         try {
@@ -232,8 +221,13 @@ private Button btn_CargarRutas;
         }
     }
 
+    public ObservableList<Recorrido> getRecorridos() {
+        return this.recorridos;
+    } 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recorridos = FXCollections.observableArrayList();
+        // La línea siguiente ha sido eliminada ya que viajeController puede ser nulo en este punto
+        // viajeController.setPrimaryController(this);
     }
 }

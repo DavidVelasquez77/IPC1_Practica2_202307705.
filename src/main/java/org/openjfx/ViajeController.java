@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import java.util.List;
 
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+
 
 public class ViajeController {
 
@@ -155,6 +157,8 @@ public class ViajeController {
         actualizarPuntosFinales();
         actualizarTransporte();
 
+        // Asegúrate de que actualizarDistancia() se ejecute después de que se hayan actualizado los puntos iniciales y finales
+        Platform.runLater(() -> actualizarDistancia());
     }
 
     private ImageView setImageForViaje(Viaje viaje, HBox hbox) {
@@ -205,12 +209,47 @@ public class ViajeController {
             transporte[i].setText(tipotransporte);
         }
     }
-    public void actualizarDistancia(){
-        Label[] distancia = {Distancia1, Distancia2, Distancia3};   
 
+    private PrimaryController primaryController;
+
+    public void setPrimaryController(PrimaryController primaryController) {
+        this.primaryController = primaryController;
+    }
+
+    public void actualizarDistancia() {
+        Label[][] puntos = {
+            {PuntoInicial1, PuntoFinal1, Distancia1},
+            {PuntoInicial2, PuntoFinal2, Distancia2},
+            {PuntoInicial3, PuntoFinal3, Distancia3}
+        };
+
+        for (Label[] punto : puntos) {
+            String puntoInicial = punto[0].getText();
+            String puntoFinal = punto[1].getText();
+
+            System.out.println("Punto inicial: " + puntoInicial);
+            System.out.println("Punto final: " + puntoFinal);
+
+            boolean coincidenciaEncontrada = false;
+
+            // Busca el recorrido que coincide con los puntos inicial y final
+            for (Recorrido recorrido : primaryController.getRecorridos()) {
+                if ((recorrido.getInicio().equals(puntoInicial) && recorrido.getFin().equals(puntoFinal)) ||
+                    (recorrido.getInicio().equals(puntoFinal) && recorrido.getFin().equals(puntoInicial))) {
+                    // Si encuentra una coincidencia, establece la distancia en el label correspondiente
+                    System.out.println("Distancia antes de establecerla: " + punto[2].getText());
+                    punto[2].setText(recorrido.getDistancia());
+                    System.out.println("Distancia después de establecerla: " + punto[2].getText());
+                    coincidenciaEncontrada = true;
+                    break;
+                }
+            }
+
+            if (!coincidenciaEncontrada) {
+                System.out.println("No se encontró ninguna coincidencia para los puntos inicial y final: " + puntoInicial + ", " + puntoFinal);
+            }
         }
-    
-
+    }
     
     private void moverImagen(ImageView imagen,Button boton, Label label, Label label2,  int posicionX) {
         TranslateTransition transitionImagen = new TranslateTransition();
