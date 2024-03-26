@@ -3,6 +3,8 @@ package org.openjfx;
 import javafx.fxml.FXML;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -99,7 +101,8 @@ public class ViajeController {
     @FXML
     private Label LabelGasolina3;
 
-
+    private AtomicReference<Double> totalGasolina = new AtomicReference<>();
+    private double recorridoActual = 0; // Variable para almacenar el valor actual de recorrido
     @FXML
     private void IniciarViaje1Button(ActionEvent event) {
         moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40, viajes.get(0));
@@ -145,21 +148,105 @@ public class ViajeController {
         moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 460 - 40, viajes.get(1));
         moverImagen(imageView3, btn_recargar3, LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 460 - 40, viajes.get(2));
     }
+    private double posicionTotal1 = 0;
+    private double posicionTotal2 = 0;
+    private double posicionTotal3 = 0;
 
     @FXML
     private void Recargar1Button(ActionEvent event) {
         System.out.println("Recargando gasolina para el viaje 1");
+        // Restablecer el valor de totalGasolina al valor original del viaje
+        totalGasolina.set(viajes.get(0).getCapacidadGasolina());
+    
+        // Calcular la distancia restante hasta el destino final
+        double distanciaRestante = Double.parseDouble(Distancia1.getText()) - recorridoActual;
+    
+        // Calcular la posición final ajustada sumando la posición actual y la posiciónTotal a 420
+        double posicionFinalAjustada = imageView1.getLayoutX() + 420 - posicionTotal1;
+    
+        // Continuar el viaje si todavía hay distancia por recorrer
+        if (distanciaRestante > 0) {
+            // Ajustar la animación para que el vehículo continúe desde su posición actual hasta el destino final
+            moverImagen(imageView1, btn_recargar1, LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, (int) posicionFinalAjustada, viajes.get(0));
+        } else {
+            System.out.println("El viaje ha llegado a su destino final.");
+        }
+    
+        // Guardar la posición actual de la imagen si la gasolina se ha agotado
+        if (totalGasolina.get() <= 0) {
+            posicionTotal1 = imageView1.getLayoutX();
+        }
     }
+    
     @FXML
     private void Recargar2Button(ActionEvent event) {
         System.out.println("Recargando gasolina para el viaje 2");
+        // Restablecer el valor de totalGasolina al valor original del viaje
+        totalGasolina.set(viajes.get(1).getCapacidadGasolina());
+    
+        // Calcular la distancia restante hasta el destino final
+        double distanciaRestante = Double.parseDouble(Distancia1.getText()) - recorridoActual;
+    
+        // Calcular la posición final ajustada sumando la posición actual y la posiciónTotal a 420
+        double posicionFinalAjustada = imageView2.getLayoutX() + 420 - posicionTotal2;
+    
+        // Continuar el viaje si todavía hay distancia por recorrer
+        if (distanciaRestante > 0) {
+            // Ajustar la animación para que el vehículo continúe desde su posición actual hasta el destino final
+            moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2, LabelGasolina2, Gasolina2, Distancia2, (int) posicionFinalAjustada, viajes.get(1));
+        } else {
+            System.out.println("El viaje ha llegado a su destino final.");
+        }
+    
+        // Guardar la posición actual de la imagen si la gasolina se ha agotado
+        if (totalGasolina.get() <= 0) {
+            posicionTotal2 = imageView2.getLayoutX();
+        }
     }
+    
     @FXML
     private void Recargar3Button(ActionEvent event) {
-      System.out.println("Recargando gasolina para el viaje 3");
+        System.out.println("Recargando gasolina para el viaje 3");
+        // Restablecer el valor de totalGasolina al valor original del viaje
+        totalGasolina.set(viajes.get(2).getCapacidadGasolina());
+    
+        // Calcular la distancia restante hasta el destino final
+        double distanciaRestante = Double.parseDouble(Distancia3.getText()) - recorridoActual;
+    
+        // Calcular la posición final ajustada sumando la posición actual y la posiciónTotal a 420
+        double posicionFinalAjustada = imageView3.getLayoutX() + 420 - posicionTotal3;
+    
+        // Continuar el viaje si todavía hay distancia por recorrer
+        if (distanciaRestante > 0) {
+            // Ajustar la animación para que el vehículo continúe desde su posición actual hasta el destino final
+            moverImagen(imageView3, btn_recargar3, LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, (int) posicionFinalAjustada, viajes.get(2));
+        } else {
+            System.out.println("El viaje ha llegado a su destino final.");
+        }
+    
+        // Guardar la posición actual de la imagen si la gasolina se ha agotado
+        if (totalGasolina.get() <= 0) {
+            posicionTotal3 = imageView3.getLayoutX();
+        }
     }
-
-
+       
+   /*  private void reiniciarViaje(ImageView imagen, Button boton, Label labelrecorrido, Label recorrido, Label labelgasolina, Label gasolina, Label distancia, int posicionX, Viaje viaje) {
+        // Restaurar el valor original de totalGasolina
+        totalGasolina.set(viaje.getCapacidadGasolina());
+        
+        // Reiniciar el recorrido total
+        if (imagen == imageView1) {
+            recorridoTotal1 = 0;
+        } else if (imagen == imageView2) {
+            recorridoTotal2 = 0;
+        } else if (imagen == imageView3) {
+            recorridoTotal3 = 0;
+        }
+    
+        // Reiniciar la animación
+        moverImagen(imagen, boton, labelrecorrido, recorrido, labelgasolina, gasolina, distancia, posicionX, viaje);
+    }
+*/
 
     public void setViajes(List<Viaje> viajes) {
         this.viajes = viajes;
@@ -187,6 +274,11 @@ public class ViajeController {
 
         // Asegúrate de que actualizarDistancia() se ejecute después de que se hayan actualizado los puntos iniciales y finales
         Platform.runLater(() -> actualizarDistancia());
+
+            // Inicializar totalGasolina al valor original del primer viaje
+    if (!viajes.isEmpty()) {
+        totalGasolina.set(viajes.get(0).getCapacidadGasolina());
+    }
     }
 
     
@@ -288,7 +380,11 @@ public class ViajeController {
     private double recorridoTotal1 = 0;
 private double recorridoTotal2 = 0;
 private double recorridoTotal3 = 0;
-    private void moverImagen(ImageView imagen, Button boton,Label labelrecorrido, Label recorrido, Label labelgasolina,Label gasolina, Label distancia, int posicionX, Viaje viaje) {
+
+
+
+private void moverImagen(ImageView imagen, Button boton, Label labelrecorrido, Label recorrido, Label labelgasolina, Label gasolina, Label distancia, int posicionX, Viaje viaje) {
+   
     TranslateTransition transitionImagen = new TranslateTransition();
     transitionImagen.setDuration(Duration.seconds(5)); // Duración de la animación
     transitionImagen.setNode(imagen); // Nodo a mover
@@ -322,68 +418,96 @@ private double recorridoTotal3 = 0;
 
     TranslateTransition transitionrecorrido = new TranslateTransition();
     transitionrecorrido.setDuration(Duration.seconds(5)); // Duración de la animación
-    transitionrecorrido.setNode( recorrido); // Nodo a mover
+    transitionrecorrido.setNode(recorrido); // Nodo a mover
     transitionrecorrido.setToX(posicionX); // Movimiento en el eje X
     transitionrecorrido.setToY(0); // Movimiento en el eje Y
     transitionrecorrido.play(); // Iniciar la animación
 
-        // Mover el labelrecorrido junto con la imagen
-        TranslateTransition transitionlabelgasolina = new TranslateTransition();
-        transitionlabelgasolina.setDuration(Duration.seconds(5)); // Duración de la animación
-        transitionlabelgasolina.setNode(labelgasolina); // Nodo a mover
-        transitionlabelgasolina.setToX(posicionX); // Movimiento en el eje X
-        transitionlabelgasolina.setToY(0); // Movimiento en el eje Y
-        transitionlabelgasolina.play(); // Iniciar la animación
-    
-        TranslateTransition transitiongasolina = new TranslateTransition();
-        transitiongasolina.setDuration(Duration.seconds(5)); // Duración de la animación
-        transitiongasolina.setNode( gasolina); // Nodo a mover
-        transitiongasolina.setToX(posicionX); // Movimiento en el eje X
-        transitiongasolina.setToY(0); // Movimiento en el eje Y
-        transitiongasolina.play(); // Iniciar la animación
-    
-// Actualizar el recorrido a medida que la imagen se mueve
-Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
-    double progress = Math.abs(imagen.getTranslateX()) / 420; // 420 es la distancia total que se mueve la imagen
-    double totalDistancia = Double.parseDouble(distancia.getText());
-    double recorridoActual = progress * totalDistancia; // No redondear hacia arriba
+    // Mover el labelgasolina junto con la imagen
+    TranslateTransition transitionlabelgasolina = new TranslateTransition();
+    transitionlabelgasolina.setDuration(Duration.seconds(5)); // Duración de la animación
+    transitionlabelgasolina.setNode(labelgasolina); // Nodo a mover
+    transitionlabelgasolina.setToX(posicionX); // Movimiento en el eje X
+    transitionlabelgasolina.setToY(0); // Movimiento en el eje Y
+    transitionlabelgasolina.play(); // Iniciar la animación
 
-    // Solo actualizar el recorrido si la imagen no está en la posición inicial
-    if (posicionX != 0) {
-        recorrido.setText(String.format("%.2f", recorridoActual));
-    }
+    TranslateTransition transitiongasolina = new TranslateTransition();
+    transitiongasolina.setDuration(Duration.seconds(5)); // Duración de la animación
+    transitiongasolina.setNode(gasolina); // Nodo a mover
+    transitiongasolina.setToX(posicionX); // Movimiento en el eje X
+    transitiongasolina.setToY(0); // Movimiento en el eje Y
+    transitiongasolina.play(); // Iniciar la animación
 
-    // Actualizar recorridoTotal con la distancia recorrida
-    if (imagen == imageView1) {
-        recorridoTotal1 += 8.5730 * totalDistancia / 420;
-        Recorrido1.setText(String.format("%.2f", recorridoTotal1));
-    } else if (imagen == imageView2) {
-        recorridoTotal2 += 8.5730 * totalDistancia / 420;
-        Recorrido2.setText(String.format("%.2f", recorridoTotal2));
-    } else if (imagen == imageView3) {
-        recorridoTotal3 += 8.5730 * totalDistancia / 420;
-        Recorrido3.setText(String.format("%.2f", recorridoTotal3));
-    }
-}));
+    // Actualizar el recorrido a medida que la imagen se mueve
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+        double progress = Math.abs(imagen.getTranslateX()) / 420; // 420 es la distancia total que se mueve la imagen
+        double totalDistancia = Double.parseDouble(distancia.getText());
+        recorridoActual = progress * totalDistancia; // Actualizar recorridoActual con la distancia recorrida
+
+        // Solo actualizar el recorrido si la imagen no está en la posición inicial
+        if (posicionX != 0) {
+            recorrido.setText(String.format("%.2f", recorridoActual));
+        }
+
+        // Actualizar recorridoTotal con la distancia recorrida
+        if (imagen == imageView1) {
+            recorridoTotal1 += (1 * totalDistancia / 420)*4;
+            Recorrido1.setText(String.format("%.2f", recorridoTotal1));
+        } else if (imagen == imageView2) {
+            recorridoTotal2 += (1 * totalDistancia / 420)*4;
+            Recorrido2.setText(String.format("%.2f", recorridoTotal2));
+        } else if (imagen == imageView3) {
+            recorridoTotal3 += (1 * totalDistancia / 420)*4;
+            Recorrido3.setText(String.format("%.2f", recorridoTotal3));
+        }
+    }));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
 
-    // Actualizar la gasolina a medida que la imagen se mueve
-    Timeline timelineGasolina = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
-        double progress = Math.abs(imagen.getTranslateX()) / 420; // 420 es la distancia total que se mueve la imagen
-        double totalGasolina = viaje.getCapacidadGasolina();
+    AtomicLong tiempo = new AtomicLong(0);
+
+    // Crear un arreglo de una sola celda para almacenar la instancia de Timeline
+    final Timeline[] timelineGasolina = new Timeline[1];
+
+    // Crear una nueva instancia de Timeline
+    timelineGasolina[0] = new Timeline(new KeyFrame(Duration.millis(100), event -> {
+        tiempo.addAndGet(100); // Aumentar el tiempo en 100 milisegundos
         double consumoGasolina = viaje.getConsumoGasolina();
-        double gasolinaConsumida = progress * consumoGasolina;
-        double gasolinaActual = totalGasolina - gasolinaConsumida;
-        gasolina.setText(String.format("%.2f", gasolinaActual));
+        double gasolinaConsumida = tiempo.get() / 1000.0 * consumoGasolina; // Convertir milisegundos a segundos
+        totalGasolina.updateAndGet(v -> v - gasolinaConsumida); // Restar la gasolina consumida del total
+
+        gasolina.setText(String.format("%.2f", totalGasolina.get()));
+
+        // Detener la animación si la gasolina llega a 0
+        if (totalGasolina.get() <= 0) {
+            timeline.stop();
+            recorridoActual = Double.parseDouble(recorrido.getText());
+    
+            if (timelineGasolina[0] != null) {
+                timelineGasolina[0].stop();
+            }
+            transitionImagen.stop();
+            transitionBoton.stop();
+            transitionlabelrecorrido.stop();
+            transitionrecorrido.stop();
+            transitionlabelgasolina.stop();
+            transitiongasolina.stop();
+
+            // Restaurar el valor de recorridoActual después de recargar la gasolina
+            recorrido.setText(String.format("%.2f", recorridoActual));
+        }
     }));
-    timelineGasolina.setCycleCount(Timeline.INDEFINITE);
-    timelineGasolina.play();
+    timelineGasolina[0].setCycleCount(Timeline.INDEFINITE);
+    timelineGasolina[0].play();
+
+    // Resto del código omitido por brevedad...
+
 
     transitionImagen.setOnFinished(event -> {
         timeline.stop();
-        timelineGasolina.stop();
+        if (timelineGasolina[0] != null) {
+            timelineGasolina[0].stop();
+        }
     });
-    
 }
 }
