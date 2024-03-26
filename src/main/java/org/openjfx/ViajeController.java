@@ -285,7 +285,9 @@ public class ViajeController {
             }
         }
     }
-    
+    private double recorridoTotal1 = 0;
+private double recorridoTotal2 = 0;
+private double recorridoTotal3 = 0;
     private void moverImagen(ImageView imagen, Button boton,Label labelrecorrido, Label recorrido, Label labelgasolina,Label gasolina, Label distancia, int posicionX, Viaje viaje) {
     TranslateTransition transitionImagen = new TranslateTransition();
     transitionImagen.setDuration(Duration.seconds(5)); // Duración de la animación
@@ -340,14 +342,29 @@ public class ViajeController {
         transitiongasolina.setToY(0); // Movimiento en el eje Y
         transitiongasolina.play(); // Iniciar la animación
     
+// Actualizar el recorrido a medida que la imagen se mueve
+Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+    double progress = Math.abs(imagen.getTranslateX()) / 420; // 420 es la distancia total que se mueve la imagen
+    double totalDistancia = Double.parseDouble(distancia.getText());
+    double recorridoActual = progress * totalDistancia; // No redondear hacia arriba
 
-     // Actualizar el recorrido a medida que la imagen se mueve
-     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
-        double progress = Math.abs(imagen.getTranslateX()) / 420; // 420 es la distancia total que se mueve la imagen
-        int totalDistancia = Integer.parseInt(distancia.getText());
-        int recorridoActual = (int) Math.ceil(progress * totalDistancia); // Redondear hacia arriba
-        recorrido.setText(String.valueOf(recorridoActual));
-    }));
+    // Solo actualizar el recorrido si la imagen no está en la posición inicial
+    if (posicionX != 0) {
+        recorrido.setText(String.format("%.2f", recorridoActual));
+    }
+
+    // Actualizar recorridoTotal con la distancia recorrida
+    if (imagen == imageView1) {
+        recorridoTotal1 += 8.5730 * totalDistancia / 420;
+        Recorrido1.setText(String.format("%.2f", recorridoTotal1));
+    } else if (imagen == imageView2) {
+        recorridoTotal2 += 8.5730 * totalDistancia / 420;
+        Recorrido2.setText(String.format("%.2f", recorridoTotal2));
+    } else if (imagen == imageView3) {
+        recorridoTotal3 += 8.5730 * totalDistancia / 420;
+        Recorrido3.setText(String.format("%.2f", recorridoTotal3));
+    }
+}));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
 
