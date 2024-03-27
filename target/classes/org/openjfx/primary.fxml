@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox fx:id="root" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.PrimaryController">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="250.0">
+         <children>
+            <AnchorPane id="side_ankerpane " fx:id="side_ankerpane" prefHeight="608.0" prefWidth="250.0" styleClass="side_ankerpane" stylesheets="@../../../java/org/openjfx/style.css">
+               <children>
+                  <Pane id="inner_pane" fx:id="inner_pane" layoutX="13.0" layoutY="16.0" prefHeight="68.0" prefWidth="225.0" styleClass="inner_pane" stylesheets="@../../../java/org/openjfx/style.css">
+                     <children>
+                        <ImageView fitHeight="52.0" fitWidth="44.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/usuario.png" />
+                           </image>
+                        </ImageView>
+                        <Pane id="most_inner_pane" fx:id="most_inner_pane" layoutX="179.0" layoutY="6.0" prefHeight="58.0" prefWidth="35.0" styleClass="most_inner_pane" stylesheets="@../../../java/org/openjfx/style.css">
+                           <children>
+                              <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="12.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/elipsis.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <JFXButton id="btn_RutasenCurso" fx:id="btn_RutasenCurso" layoutX="12.0" layoutY="124.0" onAction="#RutasenCursoButtton" prefHeight="53.0" prefWidth="226.0" styleClass="btn_RutasenCurso" stylesheets="@../../../java/org/openjfx/style.css" text="Rutas en Curso" textFill="WHITE" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/casa.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Century Gothic" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fitHeight="175.0" fitWidth="200.0" layoutX="25.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/hombre.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton id="btn_GenerarViaje" fx:id="btn_GenerarViaje" layoutX="13.0" layoutY="186.0" onAction="#GenerarViajeButton" prefHeight="53.0" prefWidth="226.0" styleClass="btn_GenerarViaje" stylesheets="@../../../java/org/openjfx/style.css" text="Generar Viaje" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/car.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton id="btn_historial" fx:id="btn_historial" layoutX="13.0" layoutY="248.0" onAction="#historialButton" prefHeight="53.0" prefWidth="226.0" styleClass="btn_historial" stylesheets="@../../../java/org/openjfx/style.css" text="Historial" textFill="WHITE" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/nota.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Century Gothic" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Pane prefHeight="600.0" prefWidth="774.0">
+         <children>
+            <Label layoutX="54.0" layoutY="11.0" prefHeight="58.0" prefWidth="678.0" text="Bienvenido a UDrive">
+               <font>
+                  <Font name="Tahoma Bold" size="35.0" />
+               </font>
+            </Label>
+            <TableView id="tbl_Recorridos" fx:id="tbl_Recorridos" layoutX="65.0" layoutY="129.0" prefHeight="432.0" prefWidth="491.0" stylesheets="@../../../java/org/openjfx/style.css">
+              <columns>
+                <TableColumn id="idColumna" fx:id="idColumna" prefWidth="81.99996948242188" text="ID" />
+                <TableColumn id="inicioColumna" fx:id="inicioColumna" prefWidth="135.3333740234375" text="Inicio" />
+                  <TableColumn id="finColumna" fx:id="finColumna" prefWidth="143.33331298828125" text="Fin" />
+                  <TableColumn id="distanciaColumna" fx:id="distanciaColumna" prefWidth="131.0" text="Distancia (km)" />
+              </columns>
+               <styleClass>
+                  <String fx:value="tbl_inicio" />
+                  <String fx:value="tbl_Recorridos" />
+               </styleClass>
+            </TableView>
+            <Text layoutX="55.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¡Nunca dejes para mañana lo que puedes hacer hoy!">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="41.0" fitWidth="43.0" layoutX="395.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/coche-de-carreras.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="57.0" fitWidth="48.0" layoutX="705.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/foto.png" />
+               </image>
+            </ImageView>
+            <JFXButton id="btn_CargarRutas" fx:id="btn_CargarRutas" layoutX="604.0" layoutY="237.0" onAction="#handleButtonAction" prefHeight="69.0" prefWidth="154.0" styleClass="btn_CargarRutas" stylesheets="@../../../java/org/openjfx/style.css" text="Cargar Rutas" textAlignment="JUSTIFY" textFill="#443aa2" wrapText="true">
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/carro.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Century Gothic" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton id="btn_EditarDistancia" fx:id="btn_EditarDistancia" layoutX="604.0" layoutY="324.0" onAction="#handleEditarDistancia" prefHeight="66.0" prefWidth="153.0" styleClass="btn_EditarDistancia" stylesheets="@../../../java/org/openjfx/style.css" text="Editar Distancia" textAlignment="JUSTIFY" textFill="#443aa2" wrapText="true">
+               <graphic>
+                  <ImageView fitHeight="48.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/distancia.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</HBox>
