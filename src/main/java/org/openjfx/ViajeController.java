@@ -105,17 +105,24 @@ public class ViajeController {
     private double recorridoActual = 0; // Variable para almacenar el valor actual de recorrido
     @FXML
     private void IniciarViaje1Button(ActionEvent event) {
-        moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40, viajes.get(0));
+        // Solo inicia el viaje si no está en curso
+        if (imageView1.getTranslateX() == 0) {
+            moverImagen(imageView1, btn_recargar1,LabelRecorrido1, Recorrido1, LabelGasolina1, Gasolina1, Distancia1, 460 - 40, viajes.get(0));
+        }
     }
     @FXML
     private void IniciarViaje2Button(ActionEvent event) {
+        if (imageView2.getTranslateX() == 0) {
         moverImagen(imageView2, btn_recargar2, LabelRecorrido2, Recorrido2, LabelGasolina2, Gasolina2, Distancia2, 460 - 40, viajes.get(1));
     }
+}
 
     @FXML
     private void IniciarViaje3Button(ActionEvent event) {
+        if (imageView3.getTranslateX() == 0) {
         moverImagen(imageView3, btn_recargar3, LabelRecorrido3, Recorrido3, LabelGasolina3, Gasolina3, Distancia3, 460 - 40, viajes.get(2));
     }
+}
 
     private void iniciarViaje(int index) {
         if (index < viajes.size()) {
@@ -229,24 +236,7 @@ public class ViajeController {
             posicionTotal3 = imageView3.getLayoutX();
         }
     }
-       
-   /*  private void reiniciarViaje(ImageView imagen, Button boton, Label labelrecorrido, Label recorrido, Label labelgasolina, Label gasolina, Label distancia, int posicionX, Viaje viaje) {
-        // Restaurar el valor original de totalGasolina
-        totalGasolina.set(viaje.getCapacidadGasolina());
-        
-        // Reiniciar el recorrido total
-        if (imagen == imageView1) {
-            recorridoTotal1 = 0;
-        } else if (imagen == imageView2) {
-            recorridoTotal2 = 0;
-        } else if (imagen == imageView3) {
-            recorridoTotal3 = 0;
-        }
-    
-        // Reiniciar la animación
-        moverImagen(imagen, boton, labelrecorrido, recorrido, labelgasolina, gasolina, distancia, posicionX, viaje);
-    }
-*/
+
 
     public void setViajes(List<Viaje> viajes) {
         this.viajes = viajes;
@@ -377,9 +367,13 @@ public class ViajeController {
             }
         }
     }
+
+
+
+
     private double recorridoTotal1 = 0;
-private double recorridoTotal2 = 0;
-private double recorridoTotal3 = 0;
+    private double recorridoTotal2 = 0;
+    private double recorridoTotal3 = 0;
 
 
 
@@ -500,14 +494,17 @@ private void moverImagen(ImageView imagen, Button boton, Label labelrecorrido, L
     timelineGasolina[0].setCycleCount(Timeline.INDEFINITE);
     timelineGasolina[0].play();
 
-    // Resto del código omitido por brevedad...
-
-
     transitionImagen.setOnFinished(event -> {
         timeline.stop();
         if (timelineGasolina[0] != null) {
             timelineGasolina[0].stop();
         }
     });
+
+    
 }
+
+
+
+
 }

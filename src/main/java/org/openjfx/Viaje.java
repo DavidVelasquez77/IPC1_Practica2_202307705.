@@ -37,7 +37,7 @@ public class Viaje {
     public void setTransporte(String transporte) {
         this.transporte = transporte;
     }
-
+    
         // Getters y setters para los nuevos campos
         public double getCapacidadGasolina() {
             return capacidadGasolina;
